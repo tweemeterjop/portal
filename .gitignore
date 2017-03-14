@@ -1,2 +1,9 @@
 .idea/*
-.pyc*
+*.pyc
+__pycache__/
+
+# ignore the sqlite db
+*.sqlite3
+
+# Ignore all virtual env directories
+venv
