@@ -7,9 +7,10 @@ import asyncore
 import email
 import os.path
 import smtpd
-import sys
+import argparse
 
 from portal import submit_file, emit_options
+
 
 class SmtpSubmit(smtpd.SMTPServer):
     def process_message(self, peer, mailfrom, rcpttos, data):
@@ -43,17 +44,12 @@ class SmtpSubmit(smtpd.SMTPServer):
         # TODO Email back with the future URLs.
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        addr = "127.0.0.1"
-        port = 25
-    elif len(sys.argv) == 2:
-        addr = sys.argv[1]
-        port = 25
-    elif len(sys.argv) == 3:
-        addr = sys.argv[1]
-        port = int(sys.argv[2])
-    else:
-        sys.exit("Unknown parameter count")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-b", "--bind", default="127.0.0.1",
+                        help="IP-address to bind to.")
+    parser.add_argument("-p", "--port", type=int, default=25,
+                        help="Port number to bind to.")
+    args = parser.parse_args()
 
-    SmtpSubmit((addr, port), None)
+    SmtpSubmit((args.bind, args.port), None)
     asyncore.loop()
