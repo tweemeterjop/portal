@@ -13,7 +13,7 @@ import weasyprint
 from lepl.apps.rfc3696 import HttpUrl, Email
 
 from flask import Flask, Blueprint, render_template, request, Response
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 import settings
 

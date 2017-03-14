@@ -9,6 +9,10 @@ DEBUG = True
 # mysql://foo:bar@localhost/portal
 SQLALCHEMY_DATABASE_URI = "postgresql://cuckoo:cuckoo@localhost/portal"
 
+# If set to True, Flask-SQLAlchemy will track modifications of objects and emit
+# signals.
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 # Secret key used by Flask to generate sessions etc. (This feature is not
 # actually used at the moment as we have no user accounts etc).
 SECRET_KEY = os.urandom(32)
